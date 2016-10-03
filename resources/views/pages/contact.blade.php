@@ -4,12 +4,6 @@
 <title>Contact Me</title>
 @stop
 
-@section('nav')
-    <li><a href="/">Home </a></li>
-    <li><a href="/about">About</a></li>
-    <li class="active"><a href="/contact">Contact<span class="sr-only">(current)</span></a></li>
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

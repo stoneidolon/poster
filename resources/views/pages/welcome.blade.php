@@ -4,12 +4,6 @@
 <title>Laravel Poster</title>
 @stop
 
-@section('nav')
-    <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
-@stop
-
 @section('content')
     <div class="row">
             <div class="col-md-12">
