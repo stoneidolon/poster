@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="row">
-        {!! Form::model($post, ['route' => ['posts.update', $post->id]]) !!}
+        {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
         <div class="col-md-8">
             {{ Form::label('title', 'Title:') }}
             {{ Form::text('title', null, ['class' => 'form-control input-lg']) }}
@@ -33,7 +33,7 @@
                         {!! Html::linkRoute('posts.show', 'Cancel', [$post->id], ['class' => 'btn btn-danger btn-block']) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.update', 'Save Changes', [$post->id], ['class' => 'btn btn-success btn-block']) !!}
+                        {{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
                     </div>
                 </div>
             </div>
