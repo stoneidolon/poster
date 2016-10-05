@@ -15,13 +15,18 @@
         <div class="col-md-4">
             <div class="well">
                 <div class="dl-horizontal">
-                    <dt>Create At:</dt>
-                    <dd>{{ $post->created_at->format('M j, Y h:ia') }}</dd>
+                    <label>Url Slug:</label>
+                    <p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
                 </div>
 
                 <div class="dl-horizontal">
-                    <dt>Last Updated:</dt>
-                    <dd>{{ $post->updated_at->format('M j, Y h:ia') }}</dd>
+                    <label>Created At:</label>
+                    <p>{{ $post->created_at->format('M j, Y h:ia') }}</p>
+                </div>
+
+                <div class="dl-horizontal">
+                    <label>Last Updated:</label>
+                    <p>{{ $post->updated_at->format('M j, Y h:ia') }}</p>
                 </div>
 
                 <hr>
