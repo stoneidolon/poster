@@ -10,4 +10,9 @@ class Post extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Post\Category');
+    }
 }
