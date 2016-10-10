@@ -20,6 +20,11 @@
                 </div>
 
                 <div class="dl-horizontal">
+                    <label>Category:</label>
+                    <p>{{ $post->category->name }}</p>
+                </div>
+
+                <div class="dl-horizontal">
                     <label>Created At:</label>
                     <p>{{ $post->created_at->format('M j, Y h:ia') }}</p>
                 </div>

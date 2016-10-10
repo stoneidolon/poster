@@ -18,6 +18,8 @@
                 {{ Form::text('title', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '100']) }}
                 {{ Form::label('slug', 'Slug:') }}
                 {{ Form::text('slug', null, ['class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '100']) }}
+                {{ Form::label('category_id', "Category:") }}
+                {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}﻿
                 {{ Form::label('body', "Post Body:") }}
                 {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) }}
                 {{ Form::submit('Create Post', ['class' => 'btn btn-success btn-lg btn-block' , 'style' => 'margin-top: 20px']) }}
