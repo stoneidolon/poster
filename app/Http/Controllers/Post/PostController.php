@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use Illuminate\Http\Request;
 use App\Models\Post\Post;
 use App\Models\Post\Category;
+use App\Models\Post\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
@@ -36,7 +37,8 @@ class PostController extends Controller
     {
         //$categories = Category::all();
         $categories = Category::pluck('name','id');
-        return view('posts.create', compact('categories'));
+        $tags = Tag::pluck('name', 'id');
+        return view('posts.create', compact('categories','tags'));
     }
 
     /**
@@ -60,6 +62,8 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->body = $request->body;
         $post->save();
+
+        $post->tags()->sync($request->tag_id, false);
         Session::flash('success', 'The blog post was successfully save!');
 
         return redirect()->route('posts.show', $post->id);
@@ -87,7 +91,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::pluck('name','id');
-        return view('posts.edit',compact('post', 'categories'));
+        $tags = Tag::pluck('name', 'id');
+        $relatedID = $post->tags()->getRelatedIds();
+        return view('posts.edit',compact('post', 'categories', 'tags', 'relatedID'));
     }
 
     /**
@@ -121,6 +127,9 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         $post->body = $request->input('body');
         $post->save();
+
+        isset($request->tags) ? $post->tags()->sync($request->tags,true) : $post->tags()->sync([],true);
+        
         Session::flash('success', 'This post was successfully saved.');
         return redirect()->route('posts.show', $post->id);
     }

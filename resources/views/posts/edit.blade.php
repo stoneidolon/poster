@@ -4,6 +4,10 @@
     <title>Edit Blog Post</title>
 @stop
 
+@section('stylesheet')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+@stop
+
 @section('content')
 
     <div class="row">
@@ -17,6 +21,9 @@
 
             {{ Form::label('category_id', 'Category:', ['class' => 'form-spacing-top']) }}
             {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+
+            {{ Form::label('tag_id', 'Tag:', ['class' => 'form-spacing-top']) }}
+            {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-muti', 'multiple' => 'multiple']) }}
 
             {{ Form::label('body', 'Body:', ['class' => 'form-spacing-top']) }}
             {{ Form::textarea('body', null, ['class' => 'form-control']) }}
@@ -45,7 +52,15 @@
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
+        {!! Form:: close() !!}
     </div><!-- end of .row(form) -->
 
+@stop
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script>
+        $('.select2-muti').select2();
+        $('.select2-muti').select2().val({!! json_encode($relatedID) !!}).trigger('change');
+    </script>
 @stop
